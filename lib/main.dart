@@ -38,9 +38,13 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
       _directoryPath = null;
       _paths = (await FilePicker.platform.pickFiles(
         allowedExtensions:
-        [
-          'csv',
-        ],
+         (_extension?.isNotEmpty ?? false)
+              ? _extension?.replaceAll(' ', '').split(',')
+              : null,
+       
+//         [
+//           'csv',
+//         ],
         withReadStream: true,
       ))
           ?.files;
